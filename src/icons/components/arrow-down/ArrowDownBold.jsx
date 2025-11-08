@@ -1,0 +1,23 @@
+import React from "react";
+import Icon from "../../Icon";
+
+export default function ArrowDownBold({
+  size = 24,
+  color = "#292D32",
+  strokeWidth = 1.5,
+  className = "",
+  ...props
+}) {
+  return (
+    <Icon
+      size={size}
+      color={color}
+      strokeWidth={0}
+      fill="currentColor"
+      className={className}
+      {...props}
+    >
+      <path d="M17.9188 8.17969H11.6888H6.07877C5.11877 8.17969 4.63877 9.33969 5.31877 10.0197L10.4988 15.1997C11.3288 16.0297 12.6788 16.0297 13.5088 15.1997L15.4788 13.2297L18.6888 10.0197C19.3588 9.33969 18.8788 8.17969 17.9188 8.17969Z" fill="currentColor"/>
+    </Icon>
+  );
+}

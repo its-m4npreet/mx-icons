@@ -1,0 +1,26 @@
+import React from "react";
+import Icon from "../../Icon";
+
+export default function ArrowSwapHorizontalLinear({
+  size = 24,
+  color = "#292D32",
+  strokeWidth = 1.5,
+  className = "",
+  ...props
+}) {
+  return (
+    <Icon
+      size={size}
+      color={color}
+      strokeWidth={strokeWidth}
+      fill="none"
+      className={className}
+      {...props}
+    >
+      <path d="M20.5 14.99L15.49 20.01" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M3.5 14.99H20.5" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M3.5 9.00999L8.51 3.98999" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M20.5 9.01001H3.5" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+    </Icon>
+  );
+}

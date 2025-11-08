@@ -1,0 +1,24 @@
+import React from "react";
+import Icon from "../../Icon";
+
+export default function ArrowRight3Bulk({
+  size = 24,
+  color = "#292D32",
+  strokeWidth = 1.5,
+  className = "",
+  ...props
+}) {
+  return (
+    <Icon
+      size={size}
+      color={color}
+      strokeWidth={0}
+      fill="currentColor"
+      className={className}
+      {...props}
+    >
+      <path opacity="0.4" d="M13.2297 8.52002L8.17969 12.31V17.92C8.17969 18.88 9.33969 19.36 10.0197 18.68L15.1997 13.5C16.0297 12.67 16.0297 11.32 15.1997 10.49L13.2297 8.52002Z" fill="currentColor"/>
+<path d="M8.17969 6.07993V12.3099L13.2297 8.51993L10.0197 5.30993C9.33969 4.63993 8.17969 5.11993 8.17969 6.07993Z" fill="currentColor"/>
+    </Icon>
+  );
+}

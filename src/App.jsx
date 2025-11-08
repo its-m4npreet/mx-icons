@@ -4,49 +4,88 @@ import { icons as ICONS } from "./icons";
 
 function App() {
   const [query, setQuery] = useState("");
-  const [activeVariant, setActiveVariant] = useState("outline");
   const [copiedIcon, setCopiedIcon] = useState(null);
-  const [showSetup, setShowSetup] = useState(false);
+  const [selectedIcon, setSelectedIcon] = useState(null);
+  const [iconSize, setIconSize] = useState(24);
+  const [iconColor, setIconColor] = useState("#292D32");
+  const [strokeWidth, setStrokeWidth] = useState(1.5);
+  const [activeVariant, setActiveVariant] = useState("linear");
+  const [currentPage, setCurrentPage] = useState(1);
+  const iconsPerPage = 100;
 
+  // Get all available variants
   const allVariants = useMemo(() => {
+    if (!ICONS || ICONS.length === 0) return [];
     const variantSet = new Set();
     ICONS.forEach((group) => {
-      group.variants.forEach((v) => variantSet.add(v.variant));
+      group.variants?.forEach((v) => variantSet.add(v.variant));
     });
-    return Array.from(variantSet);
+    return Array.from(variantSet).sort();
   }, []);
 
+  // Filter icons by active variant
   const flatIcons = useMemo(() => {
     const list = [];
     ICONS.forEach((group) => {
-      const variant = group.variants.find((v) => v.variant === activeVariant);
-      if (variant) {
+      const variantIcon = group.variants?.find(
+        (v) => v.variant === activeVariant
+      );
+      if (variantIcon) {
         list.push({
           groupName: group.name,
-          ...variant,
+          groupSlug: group.slug,
+          ...variantIcon,
         });
       }
     });
     return list;
   }, [activeVariant]);
 
+  // Filter by search query
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return flatIcons;
-    return flatIcons.filter((icon) => icon.slug.toLowerCase().includes(q));
+    return flatIcons.filter(
+      (icon) =>
+        icon.slug?.toLowerCase().includes(q) ||
+        icon.componentName?.toLowerCase().includes(q) ||
+        icon.groupName?.toLowerCase().includes(q) ||
+        icon.groupSlug?.toLowerCase().includes(q)
+    );
   }, [query, flatIcons]);
 
-  async function copySnippet(icon) {
-    const code = `import { ${icon.componentName} } from 'mx-icons'
+  // Pagination
+  const totalPages = Math.ceil(filtered.length / iconsPerPage);
+  const paginatedIcons = useMemo(() => {
+    const startIndex = (currentPage - 1) * iconsPerPage;
+    const endIndex = startIndex + iconsPerPage;
+    return filtered.slice(startIndex, endIndex);
+  }, [filtered, currentPage, iconsPerPage]);
 
-<${icon.componentName} />`;
+  // Reset to page 1 when search or variant changes
+  if (currentPage > totalPages && totalPages > 0) {
+    setCurrentPage(1);
+  }
+
+  async function copyCode(code) {
     try {
       await navigator.clipboard.writeText(code);
-      setCopiedIcon(icon.slug);
+      setCopiedIcon("code");
       setTimeout(() => setCopiedIcon(null), 1500);
     } catch (e) {
       console.error("copy failed", e);
     }
+  }
+
+  function openIconModal(icon) {
+    setSelectedIcon(icon);
+    setIconSize(24);
+    setIconColor("#111111");
+    setStrokeWidth(1.5);
+  }
+
+  function closeIconModal() {
+    setSelectedIcon(null);
   }
 
   return (
@@ -90,7 +129,7 @@ function App() {
             <div className="info-item">
               <span className="info-count">{ICONS.length} icons</span>
               <span className="info-separator">·</span>
-              <span className="info-text">MIT license</span>
+              <span className="info-text">Open source</span>
               <span className="info-separator">·</span>
               <span className="info-text">React & Vue libraries</span>
             </div>
@@ -115,9 +154,9 @@ function App() {
               >
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
-              Documentation
+              Contribution
             </a>
-            <button className="action-button secondary">
+            {/* <button className="action-button secondary">
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -129,47 +168,10 @@ function App() {
                 <path d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
               </svg>
               Twitter
-            </button>
+            </button> */}
           </div>
         </div>
       </header>
-
-      {showSetup && (
-        <div className="setup-guide">
-          <div className="setup-content">
-            <button
-              className="setup-close"
-              onClick={() => setShowSetup(false)}
-            ></button>
-            <h2>Quick Start</h2>
-            <div className="setup-step">
-              <h3>1. Install</h3>
-              <pre className="code-snippet">npm install mx-icons</pre>
-            </div>
-            <div className="setup-step">
-              <h3>2. Import & Use</h3>
-              <pre className="code-snippet">{`import { HomeOutline, YouTubeOutline } from 'mx-icons'
-
-<HomeOutline size={24} color="#111" />
-<YouTubeOutline size={32} color="#ff0000" />`}</pre>
-            </div>
-            <div className="setup-step">
-              <h3>3. Props</h3>
-              <ul className="props-list">
-                <li>
-                  <code>size</code> - Icon size (default: 24)
-                </li>
-                <li>
-                  <code>color</code> - Stroke color (default: "#111")
-                </li>
-                <li>
-                  <code>strokeWidth</code> - Stroke width (default: 1.5)
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      )}
 
       <div className="container">
         <div className="search-wrapper">
@@ -195,29 +197,158 @@ function App() {
             </button>
           ))}
           <div className="variant-info">
-            {activeVariant.charAt(0).toUpperCase() + activeVariant.slice(1)} •
-            24×24, 1.5px stroke
+            {filtered.length} icons •{" "}
+            {activeVariant.charAt(0).toUpperCase() + activeVariant.slice(1)}{" "}
+            style
           </div>
         </div>
 
+        {totalPages > 1 && (
+          <div className="pagination">
+            <button
+              className="pagination-button"
+              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+            >
+              ← Previous
+            </button>
+            <div className="pagination-info">
+              Page {currentPage} of {totalPages}
+            </div>
+            <button
+              className="pagination-button"
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+              }
+              disabled={currentPage === totalPages}
+            >
+              Next →
+            </button>
+          </div>
+        )}
+
         <div className="icons-grid">
-          {filtered.map((icon) => (
+          {paginatedIcons.map((icon) => (
             <button
               key={icon.slug}
               className="icon-card"
-              onClick={() => copySnippet(icon)}
-              title={`Copy ${icon.componentName}`}
+              onClick={() => openIconModal(icon)}
+              title={`Customize ${icon.componentName}`}
             >
               <div className="icon-display">
-                <icon.Component size={24} color="#111" strokeWidth={1.5} />
+                <icon.Component size={24} color="#3B3C3D" strokeWidth={1.5} />
               </div>
-              <div className="icon-name">{icon.slug}</div>
-              {copiedIcon === icon.slug && (
-                <div className="copied-toast">Copied!</div>
-              )}
+              <div className="icon-name">{icon.componentName}</div>
             </button>
           ))}
         </div>
+
+        {totalPages > 1 && (
+          <div className="pagination">
+            <button
+              className="pagination-button"
+              onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+            >
+              ← Previous
+            </button>
+            <div className="pagination-info">
+              Page {currentPage} of {totalPages}
+            </div>
+            <button
+              className="pagination-button"
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+              }
+              disabled={currentPage === totalPages}
+            >
+              Next →
+            </button>
+          </div>
+        )}
+
+        {selectedIcon && (
+          <div className="modal-overlay" onClick={closeIconModal}>
+            <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+              <button className="modal-close" onClick={closeIconModal}>
+                ✕
+              </button>
+
+              <h2 className="modal-title">{selectedIcon.componentName}</h2>
+
+              <div className="modal-preview">
+                <selectedIcon.Component
+                  size={iconSize}
+                  color={iconColor}
+                  strokeWidth={strokeWidth}
+                />
+              </div>
+
+              <div className="modal-controls">
+                <div className="control-group">
+                  <label>
+                    Size: <strong>{iconSize}px</strong>
+                  </label>
+                  <input
+                    type="range"
+                    min="8"
+                    max="96"
+                    value={iconSize}
+                    onChange={(e) => setIconSize(Number(e.target.value))}
+                  />
+                </div>
+
+                <div className="control-group">
+                  <label>
+                    Color: <strong>{iconColor}</strong>
+                  </label>
+                  <input
+                    type="color"
+                    value={iconColor}
+                    onChange={(e) => setIconColor(e.target.value)}
+                  />
+                </div>
+
+                <div className="control-group">
+                  <label>
+                    Stroke Width: <strong>{strokeWidth}</strong>
+                  </label>
+                  <input
+                    type="range"
+                    min="0.5"
+                    max="4"
+                    step="0.1"
+                    value={strokeWidth}
+                    onChange={(e) => setStrokeWidth(Number(e.target.value))}
+                  />
+                </div>
+              </div>
+
+              <div className="modal-code">
+                <h3>How to use</h3>
+                <pre>
+                  <code>{`import { ${selectedIcon.componentName} } from 'mx-icons'
+
+<${selectedIcon.componentName} 
+  size={${iconSize}} 
+  color="${iconColor}" 
+  strokeWidth={${strokeWidth}} 
+/>`}</code>
+                </pre>
+                <button
+                  className="copy-button"
+                  onClick={() =>
+                    copyCode(
+                      `import { ${selectedIcon.componentName} } from 'mx-icons'\n\n<${selectedIcon.componentName} size={${iconSize}} color="${iconColor}" strokeWidth={${strokeWidth}} />`
+                    )
+                  }
+                >
+                  {copiedIcon === "code" ? "✓ Copied!" : "Copy Code"}
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
         {filtered.length === 0 && (
           <div className="no-results">
@@ -256,15 +387,7 @@ function App() {
                     </a>
                   </li>
                   <li>
-                    <a
-                      href="#"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setShowSetup(true);
-                      }}
-                    >
-                      Quick Start
-                    </a>
+                    <a href="#">Quick Start</a>
                   </li>
                   <li>
                     <a href="https://github.com/ig-imanish/mx-icons">GitHub</a>

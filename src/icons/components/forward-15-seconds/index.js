@@ -1,0 +1,49 @@
+import Forward15SSecondsBold from "./Forward15SSecondsBold";
+import Forward15SSecondsBroken from "./Forward15SSecondsBroken";
+import Forward15SSecondsBulk from "./Forward15SSecondsBulk";
+import Forward15SSecondsLinear from "./Forward15SSecondsLinear";
+import Forward15SSecondsOutline from "./Forward15SSecondsOutline";
+import Forward15SSecondsTwotone from "./Forward15SSecondsTwotone";
+
+export { Forward15SSecondsBold, Forward15SSecondsBroken, Forward15SSecondsBulk, Forward15SSecondsLinear, Forward15SSecondsOutline, Forward15SSecondsTwotone };
+
+export const variants = [
+  {
+    variant: "bold",
+    slug: "forward-15-seconds-bold",
+    Component: Forward15SSecondsBold,
+    componentName: "Forward15SSecondsBold",
+  },
+  {
+    variant: "broken",
+    slug: "forward-15-seconds-broken",
+    Component: Forward15SSecondsBroken,
+    componentName: "Forward15SSecondsBroken",
+  },
+  {
+    variant: "bulk",
+    slug: "forward-15-seconds-bulk",
+    Component: Forward15SSecondsBulk,
+    componentName: "Forward15SSecondsBulk",
+  },
+  {
+    variant: "linear",
+    slug: "forward-15-seconds-linear",
+    Component: Forward15SSecondsLinear,
+    componentName: "Forward15SSecondsLinear",
+  },
+  {
+    variant: "outline",
+    slug: "forward-15-seconds-outline",
+    Component: Forward15SSecondsOutline,
+    componentName: "Forward15SSecondsOutline",
+  },
+  {
+    variant: "twotone",
+    slug: "forward-15-seconds-twotone",
+    Component: Forward15SSecondsTwotone,
+    componentName: "Forward15SSecondsTwotone",
+  }
+];
+
+export default { Forward15SSecondsBold, Forward15SSecondsBroken, Forward15SSecondsBulk, Forward15SSecondsLinear, Forward15SSecondsOutline, Forward15SSecondsTwotone };

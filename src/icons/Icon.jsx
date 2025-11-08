@@ -1,10 +1,12 @@
 import React from "react";
 
 export default function Icon({
-  children,
   size = 24,
-  color = "#111",
+  color = "#292D32",
   strokeWidth = 1.5,
+  fill = "none",
+  className = "",
+  children,
   ...props
 }) {
   return (
@@ -12,13 +14,14 @@ export default function Icon({
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      fill="none"
+      fill={fill}
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+      style={{ color }}
       stroke={color}
       strokeWidth={strokeWidth}
       strokeLinecap="round"
       strokeLinejoin="round"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden={props["aria-hidden"] ?? true}
       {...props}
     >
       {children}

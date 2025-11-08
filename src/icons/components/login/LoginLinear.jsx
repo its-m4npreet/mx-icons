@@ -1,0 +1,25 @@
+import React from "react";
+import Icon from "../../Icon";
+
+export default function LoginLinear({
+  size = 24,
+  color = "#292D32",
+  strokeWidth = 1.5,
+  className = "",
+  ...props
+}) {
+  return (
+    <Icon
+      size={size}
+      color={color}
+      strokeWidth={strokeWidth}
+      fill="none"
+      className={className}
+      {...props}
+    >
+      <path d="M8.90002 7.55999C9.21002 3.95999 11.06 2.48999 15.11 2.48999H15.24C19.71 2.48999 21.5 4.27999 21.5 8.74999V15.27C21.5 19.74 19.71 21.53 15.24 21.53H15.11C11.09 21.53 9.24002 20.08 8.91002 16.54" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M2 12H14.88" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+<path d="M12.65 8.6499L16 11.9999L12.65 15.3499" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </Icon>
+  );
+}

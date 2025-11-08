@@ -1,0 +1,23 @@
+import React from "react";
+import Icon from "../../Icon";
+
+export default function MinusTwotone({
+  size = 24,
+  color = "#292D32",
+  strokeWidth = 1.5,
+  className = "",
+  ...props
+}) {
+  return (
+    <Icon
+      size={size}
+      color={color}
+      strokeWidth={strokeWidth}
+      fill="none"
+      className={className}
+      {...props}
+    >
+      <path d="M6 12H18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </Icon>
+  );
+}

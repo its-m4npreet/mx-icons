@@ -25,7 +25,7 @@ Inspired by Heroicons • Built with React • Optimized for Production
 - 📦 **Zero Dependencies** - Only React as a peer dependency (18.x or 19.x)
 - 🌐 **Social Media Ready** - Includes popular platform icons (YouTube, Instagram, Twitter, GitHub, etc.)
 - 💅 **Modern Design** - Clean, professional icons optimized for light-mode interfaces
-- 🚀 **Developer Friendly** - Simple API, TypeScript ready, works with Next.js, Vite, CRA
+- 🚀 **Developer Friendly** - Simple API, works with Next.js, Vite, CRA
 - 📱 **Responsive** - Built-in support for different sizes (24px standard, 16px mini)
 
 ## 📦 Installation
@@ -106,7 +106,7 @@ import { HomeOutline, GitHubOutline, ArchiveArrow } from 'mx-icons';
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/mx-icons.git
+git clone https://github.com/ig-imanish/mx-icons.git
 cd mx-icons
 
 # Install dependencies
@@ -127,8 +127,8 @@ We welcome contributions! Here's how you can help make MX Icons even better:
 1. **Fork & Clone**
 
    ```bash
-   git fork https://github.com/yourusername/mx-icons.git
-   git clone https://github.com/YOUR_USERNAME/mx-icons.git
+   git fork https://github.com/ig-imanish/mx-icons.git
+   git clone https://github.com/ig-imanish/mx-icons.git
    cd mx-icons
    npm install
    ```

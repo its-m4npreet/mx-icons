@@ -1,0 +1,49 @@
+import Menu1Bold from "./Menu1Bold";
+import Menu1Broken from "./Menu1Broken";
+import Menu1Bulk from "./Menu1Bulk";
+import Menu1Linear from "./Menu1Linear";
+import Menu1Outline from "./Menu1Outline";
+import Menu1Twotone from "./Menu1Twotone";
+
+export { Menu1Bold, Menu1Broken, Menu1Bulk, Menu1Linear, Menu1Outline, Menu1Twotone };
+
+export const variants = [
+  {
+    variant: "bold",
+    slug: "menu-1-bold",
+    Component: Menu1Bold,
+    componentName: "Menu1Bold",
+  },
+  {
+    variant: "broken",
+    slug: "menu-1-broken",
+    Component: Menu1Broken,
+    componentName: "Menu1Broken",
+  },
+  {
+    variant: "bulk",
+    slug: "menu-1-bulk",
+    Component: Menu1Bulk,
+    componentName: "Menu1Bulk",
+  },
+  {
+    variant: "linear",
+    slug: "menu-1-linear",
+    Component: Menu1Linear,
+    componentName: "Menu1Linear",
+  },
+  {
+    variant: "outline",
+    slug: "menu-1-outline",
+    Component: Menu1Outline,
+    componentName: "Menu1Outline",
+  },
+  {
+    variant: "twotone",
+    slug: "menu-1-twotone",
+    Component: Menu1Twotone,
+    componentName: "Menu1Twotone",
+  }
+];
+
+export default { Menu1Bold, Menu1Broken, Menu1Bulk, Menu1Linear, Menu1Outline, Menu1Twotone };

@@ -1,14 +1,25 @@
 {
   "name": "mx-icons",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Beautiful hand-crafted SVG icons for React - light mode only",
   "type": "module",
-  "main": "./dist/mx-icons.umd.js",
-  "module": "./dist/mx-icons.es.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
   "exports": {
     ".": {
-      "import": "./dist/mx-icons.es.js",
-      "require": "./dist/mx-icons.umd.js"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./Icon": {
+      "import": "./dist/Icon.js",
+      "require": "./dist/Icon.cjs"
+    },
+    "./*": {
+      "import": "./dist/*/index.js",
+      "require": "./dist/*/index.cjs"
     }
   },
   "files": [
@@ -22,13 +33,13 @@
     "mx-icons",
     "react-icons"
   ],
-  "author": "Your Name",
+  "author": "Manish kumar",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/mx-icons"
+    "url": "https://github.com/ig-imanish/mx-icons"
   },
-  "homepage": "https://github.com/yourusername/mx-icons#readme",
+  "homepage": "https://github.com/ig-imanish/mx-icons#readme",
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0"
   },
@@ -36,7 +47,8 @@
     "dev": "vite",
     "build": "vite build",
     "build:lib": "vite build --config vite.lib.config.js",
-    "prepublishOnly": "npm run build:lib",
+    "generate": "node scripts/generate-icons.js",
+    "prepublishOnly": "npm run generate && npm run build:lib",
     "lint": "eslint .",
     "preview": "vite preview"
   },
