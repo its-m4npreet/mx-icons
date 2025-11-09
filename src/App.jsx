@@ -93,14 +93,15 @@ function App() {
           <div className="header-top">
             <div className="logo-section">
               <div className="logo-icon">
-                <svg
+                {/* <svg
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                 >
                   <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+                </svg> */}
+                <img src="/mx-icons.png" alt="" />
               </div>
               <h1 className="logo-text">mxicons</h1>
               <span className="version-badge">v1.0.4</span>
@@ -361,14 +362,15 @@ function App() {
           <div className="footer-top">
             <div className="footer-brand">
               <div className="footer-logo">
-                <svg
+                {/* <svg
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                 >
                   <path d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
+                </svg> */}
+                <img src="/mx-icons.png" alt="" />
                 <span>mxicons</span>
               </div>
               <p className="footer-tagline">

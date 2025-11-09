@@ -1,13 +1,13 @@
-# 🎨 MX Icons
-
 <div align="center">
   
-  ![npm version](https://img.shields.io/npm/v/mx-icons)
-  ![npm downloads](https://img.shields.io/npm/dm/mx-icons)
-  ![license](https://img.shields.io/github/license/ig-imanish/mx-icons)
-  ![bundle size](https://img.shields.io/bundlephobia/minzip/mx-icons)
+  ![Preview](/imgs/mxicons-banner-ts.png)
 
-**A modern, lightweight React icon library with beautiful hand-crafted SVG icons**
+![npm version](https://img.shields.io/npm/v/mx-icons)
+![npm downloads](https://img.shields.io/npm/dm/mx-icons)
+![license](https://img.shields.io/github/license/ig-imanish/mx-icons)
+![bundle size](https://img.shields.io/bundlephobia/minzip/mx-icons)
+
+**A modern, lightweight React icon library with beautiful SVG icons**
 
 Built with React • Optimized for Production
 
@@ -23,9 +23,7 @@ Built with React • Optimized for Production
 - ⚡ **Lightweight & Fast** - Tree-shakeable, only imports what you use
 - 🔧 **Fully Customizable** - Control size, color, and all SVG attributes
 - 📦 **Zero Dependencies** - Only React as a peer dependency (18.x or 19.x)
-- 🌐 **Social Media Ready** - Includes popular platform icons (YouTube, Instagram, Twitter, GitHub, etc.)
 - 💅 **Modern Design** - Clean, professional icons optimized for light-mode interfaces
-- 🚀 **Developer Friendly** - Simple API, works with Next.js, Vite, CRA
 - 📱 **Responsive** - Built-in support for different sizes (24px standard, 16px mini)
 
 ## 📦 Installation
@@ -34,27 +32,17 @@ Built with React • Optimized for Production
 npm install mx-icons
 ```
 
-```bash
-yarn add mx-icons
-```
-
-```bash
-pnpm add mx-icons
-```
-
 ## 🚀 Quick Start
 
 ```jsx
-import { HomeOutline, YouTubeOutline } from "mx-icons";
+import { NoteTextLinear } from "mx-icons";
 
 function App() {
   return (
     <div>
-      {/* Basic usage */}
-      <HomeOutline />
+      <NoteTextLinear />
 
-      {/* Custom size and color */}
-      <YouTubeOutline size={32} color="#FF0000" />
+      <NoteTextLinear size={24} color="#292D32" />
     </div>
   );
 }
