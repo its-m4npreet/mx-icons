@@ -40,6 +40,7 @@
 * {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.3) rgba(255, 255, 255, 0.1);
+  
 }
 
 .app {
@@ -537,6 +538,8 @@
   border: 2px dashed #e5e7eb;
   border-radius: 8px;
   margin-bottom: 1.5rem;
+  height: 150px;
+  min-height: 150px;
 }
 
 .modal-controls {
